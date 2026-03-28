@@ -265,6 +265,28 @@
     opacity:.7;cursor:not-allowed;
   }
 
+  /* ── Form fields ── */
+  .form-fields{
+    display:flex;flex-direction:column;gap:10px;
+    margin:20px 0 24px;text-align:left;
+  }
+  .form-input{
+    font-family:'Outfit',sans-serif;
+    font-size:.88rem;font-weight:400;
+    color:var(--text);
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px 16px;
+    outline:none;
+    transition:border-color .2s,box-shadow .2s;
+  }
+  .form-input::placeholder{color:#a9a49e;font-weight:300}
+  .form-input:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(192,69,42,.1);
+  }
+
   /* ── Success state ── */
   .success-msg{display:none;text-align:center;padding:60px 40px}
   .success-msg.active{display:block}
@@ -309,7 +331,7 @@
 
 <!-- Nav -->
 <nav>
-  <a href="#" class="logo">Arabika</a>
+  <a href="#" class="logo">Acme</a>
   <div class="nav-links">
     <a href="#">Settings</a>
     <a href="#">Privacy</a>
@@ -371,7 +393,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
           Request Account Deletion
         </a>
-        <a href="/cdn-cgi/l/email-protection#620b0c040d22071a030f120e074c010d0f5d111700080701165f2301010d170c1647505226070e07160b0d0c4750524f475052311712120d101647505230071317071116" class="alt-link">Or contact support for assistance &rarr;</a>
+        <a href="mailto:info@example.com?subject=Account%20Deletion%20-%20Support%20Request" class="alt-link">Or contact support for assistance &rarr;</a>
       </div>
     </div>
 
@@ -381,7 +403,7 @@
         <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h3>Request submitted</h3>
-      <p>Your deletion request has been sent to <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="630a0d050c23061b020e130f064d000c0e">[email&#160;protected]</a></strong>. We'll process it within 30 days and send you a confirmation once complete.</p>
+      <p>Your deletion request has been sent. We'll process it within 30 days and send a confirmation to the email address you provided.</p>
     </div>
 
     <!-- Error state -->
@@ -390,7 +412,7 @@
         <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </div>
       <h3>Something went wrong</h3>
-      <p>We couldn't send your request. Please try again or contact us directly at <a href="/cdn-cgi/l/email-protection#c9a0a7afa689acb1a8a4b9a5ace7aaa6a4" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="4d24232b220d28352c203d2128632e2220">[email&#160;protected]</span></a>.</p>
+      <p>We couldn't send your request. Please try again or contact us directly at <a href="mailto:info@example.com" style="color:var(--accent)">info@example.com</a>.</p>
       <button class="btn-delete" onclick="location.reload()" style="margin-top:20px;font-size:.85rem;padding:12px 28px">Try again</button>
     </div>
   </div>
@@ -411,13 +433,16 @@
   <div class="modal">
     <form id="form">
       <input type="hidden" name="subject" value="Account & Data Deletion Request">
-      <input type="hidden" name="from_name" value="Account Deletion Page">
       <input type="hidden" name="message" value="A user has requested the deletion of their account and all associated data. Please process this deletion within 30 days as per the data protection policy.">
       <div class="modal-icon">
         <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <h3>Are you sure?</h3>
       <p>This will permanently delete your account and all associated data. This action cannot be undone.</p>
+      <div class="form-fields">
+        <input type="text" name="name" class="form-input" placeholder="Your full name" required>
+        <input type="email" name="email" class="form-input" placeholder="Your email address" required>
+      </div>
       <div class="modal-actions">
         <button type="button" class="btn-cancel" id="cancelBtn">Keep my account</button>
         <button type="submit" class="btn-confirm">Yes, delete</button>
